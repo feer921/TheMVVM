@@ -1,0 +1,3 @@
+include ':TheMVX'
+include ':app'
+rootProject.name = "TheMVVM"

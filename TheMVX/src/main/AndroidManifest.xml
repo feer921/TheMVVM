@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="common.mvx">
+    <!--   通用的 可替换 ViewDelegate 的共用Activity
+                 默认屏幕旋转不销毁
+                 默认 输入法隐藏|自动调整布局
+                 -->
+    <application >
+        <activity android:name="common.mvx.activity.CommonViewDelegateActivity"
+            android:configChanges="fontScale|keyboardHidden|orientation|screenSize|layoutDirection|screenLayout"
+            android:screenOrientation="locked"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan|adjustResize"
+            >
+
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,87 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="common_dialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <!--  changed old parent="@android:style/Theme.Dialog" -->
+
+        <!-- 内容覆盖物 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置dialog的背景 -->
+        <!--<item name="android:background">@null</item>-->
+        <!-- 背景:透明,如果是@null，则没有了背景(应该是黑的??) -->
+        <!--显示区域背景是否透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景是否暗淡 周围变暗 -->
+        <item name="android:backgroundDimEnabled">false</item>
+    <!-- 就是用来控制灰度的值，当为1时，界面除了我们的dialog内容是高亮显示的，dialog以外的区域是黑色的，完全看不到其他内容，系统的默认值是0.5-->
+        <!--<item name="android:backgroundDimAmount">0.5</item>-->
+    </style>
+
+    <style name="common_dialog_bg_dim" parent="common_dialog">
+        <!-- 背景是否暗淡 周围变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="BaseProject_Theme.Base" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--<style name="common_dialog_style" parent="@android:style/Theme.Dialog">-->
+        <!--<item name="android:windowFrame">@null</item>-->
+        <!--<item name="android:backgroundDimEnabled">true</item>-->
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <!--<item name="android:windowIsTranslucent">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+    <!--</style>-->
+
+
+
+    <!-- 通用textView style:宽、高自适应；内部居中、外部居中；单行 -->
+    <!-- <item name="android:singleLine">true</item> 换成maxLines-->
+    <style name="common_tv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="common_edittext_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="common_edittext_style_full_width" parent="common_edittext_style">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!-- 宽、高都填充父控件的通用EditeText -->
+    <style name="common_edittext_style_full_w_h" parent="common_edittext_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="common_iv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="tv_fill_w_h_style" parent="common_tv_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+
+
+</resources>
