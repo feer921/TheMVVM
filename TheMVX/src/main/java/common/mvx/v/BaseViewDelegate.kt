@@ -41,6 +41,7 @@ abstract class BaseViewDelegate(protected val mContext: Context) : IView, View.O
     protected var rootView: View? = null
 
 
+
     /**
      * 当前View层可能需要查找出的各视图控件
      * 1、之所以使用 稀释数组缓存起来，是为了减少在调用[findViewById]方法获取View时减少遍历View树
@@ -48,7 +49,6 @@ abstract class BaseViewDelegate(protected val mContext: Context) : IView, View.O
      */
     protected var viewsCache: SparseArray<View>? = null
 
-//    protected val appContext: Context = mContext.applicationContext
 
     protected var mViewModelStoreOwner: ViewModelStoreOwner? = null
 
@@ -60,9 +60,20 @@ abstract class BaseViewDelegate(protected val mContext: Context) : IView, View.O
      * added by fee 2021-03-13: 由于本视图层是使用 [LayoutInflater] [inflate]出界面布局的方式，
      * 而如果 [container]外部没有指定容器View的Case 下，XML中根 View 所写的 布局参数并不会被保留
      * 造成开发者在 XML 中写的 边距等属性无效，所以这里统一处理，并可以让子类 自主配置
-     * def = false 因为大多数情况下，我们在 XML中的根 View不会写 边距等属性
+     * def = false 因为大多数情况下，我们在 XML中的根 View不会写外边距等属性
      */
     protected var isNeedKeepXmlRootViewParams = false
+
+    /**
+     * 方便 在写 布局参数时 不用写这么长的：ViewGroup.LayoutParams.WRAP_CONTENT
+     */
+    protected val WRAP_CONTENT by lazy {
+        ViewGroup.LayoutParams.WRAP_CONTENT
+    }
+
+    protected val MATCH_PARENT by lazy {
+        ViewGroup.LayoutParams.MATCH_PARENT
+    }
 
     /**
      * 注：子类甚至是可以 不通过 [provideVLayoutRes]方式提供视图层的 布局资源的，
@@ -83,6 +94,7 @@ abstract class BaseViewDelegate(protected val mContext: Context) : IView, View.O
         } else {
             rootView = provideTheDelegateView()
         }
+        configTheView(container, rootView)
         return peekRootView()
     }
 
@@ -94,6 +106,16 @@ abstract class BaseViewDelegate(protected val mContext: Context) : IView, View.O
     protected open fun provideTheDelegateView(): View? {
 
         return null
+    }
+
+    /**
+     * 继续配置 当前视图代理层的 视图
+     * 比如：根据不同的需求，配置不同的布局参数
+     * @param container 容器 View
+     * @param thisView 即本视图代理层的视图
+     */
+    protected open fun configTheView(container: ViewGroup?, thisView: View?) {
+        //do nothing def
     }
 
     /**
@@ -408,6 +430,15 @@ abstract class BaseViewDelegate(protected val mContext: Context) : IView, View.O
             mContext
         } else {
             null
+        }
+    }
+
+    /**
+     * 当本视图层置于 [Activity] 中，且希望 给启动者返回相关数据时，可以调用本便捷方法
+     */
+    protected open fun setActivityResult(resultCode: Int, resultIntentData: Intent? = null) {
+        peekContextAsActivity()?.let {
+            it.setResult(resultCode, resultIntentData)
         }
     }
 

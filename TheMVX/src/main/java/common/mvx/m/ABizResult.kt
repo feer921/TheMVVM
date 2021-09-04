@@ -12,11 +12,11 @@ package common.mvx.m
  * </p>
  * ******************(^_^)***********************
  */
-open class ABizResult<DataType,R>(
+open class ABizResult<DataType, R>(
     var dataType: DataType,
     var data: R?,
     var isNeedShowLoading: Boolean = false,
     var errorMsg: String? = null,
     var exception: Exception? = null,
-    var extraInfo:Any? = null
+    var extraInfo: Any? = null
 )
